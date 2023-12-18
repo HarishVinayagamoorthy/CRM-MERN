@@ -1,0 +1,50 @@
+/* userDashboard.module.css */
+
+.container {
+  margin: 20px;
+}
+
+.summary {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.chartContainer {
+  margin-top: 20px;
+}
+
+.tickets {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.ticket {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* New styles for visualizations */
+.chartContainer {
+  margin-top: 20px;
+}
+
+/* Update existing styles */
+.summary p {
+  margin: 10px 0;
+}
+
+/* Colors for ticket statuses */
+.status-resolved {
+  color: green;
+}
+
+.status-pending {
+  color: orange;
+}
+
+.status-approved {
+  color: blue;
+}

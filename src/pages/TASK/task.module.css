@@ -1,0 +1,13 @@
+/* task.module.css */
+
+.input {
+  /* Add your input field styles here */
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  /* Add your error message styles here */
+}
+
+/* Add any additional styles for your form or other elements as needed */

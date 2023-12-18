@@ -1,0 +1,20 @@
+/* submittedtask.module.css */
+
+.submittedTaskPage {
+  padding: 20px;
+}
+
+/* Search Bar Styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Card Styles */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

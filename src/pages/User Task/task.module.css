@@ -1,0 +1,14 @@
+/* task.module.css */
+
+.taskPage {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+}
+
+/* You can add more styles based on your design requirements */

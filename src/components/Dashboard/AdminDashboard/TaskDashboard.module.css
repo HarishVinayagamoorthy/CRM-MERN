@@ -1,0 +1,32 @@
+/* Add more styles as needed */
+/* TaskDashboard.module.css */
+
+.title {
+  font-size: 24px !important;
+  font-weight: bold !important;
+  margin-bottom: 20px !important;
+}
+
+.card {
+  width: auto !important;
+  margin-bottom: 20px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  height: auto;
+}
+
+.propertyValue {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  margin-bottom: 10px !important;
+}
+
+.warningCard {
+  background-color: #ffcf3e; /* Bootstrap warning color */
+}
+
+.successCard {
+  background-color: #28a745; /* Bootstrap success color */
+}
+
+/* Add more styles as needed */

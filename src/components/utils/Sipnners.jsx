@@ -3,7 +3,7 @@ import Spinner from "react-bootstrap/Spinner";
 function VariantsExample() {
   return (
     <>
-      <Spinner animation="border" variant="light" />
+      <Spinner animation="border" variant="dark" />
     </>
   );
 }

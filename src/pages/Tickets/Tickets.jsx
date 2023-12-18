@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Spinner  from "../../components/Spiner/Spiner"
 
 function Ticket() {
   let logout = useLogout();
@@ -136,6 +137,7 @@ function AdminTicket() {
   const params = useParams();
   const [ticket, setTicket] = useState({});
   const [reason, setReason] = useState("");
+  const [loading, setLoading] = useState(true); // Add loading state
   const logout = useLogout();
   const navigate = useNavigate();
 
@@ -150,6 +152,9 @@ function AdminTicket() {
       if (error.response.status === 401) {
         logout();
       }
+    } finally {
+      // Set loading to false when the data is received (whether successful or not)
+      setLoading(false);
     }
   };
 
@@ -167,6 +172,9 @@ function AdminTicket() {
         toast.error("Please provide a Solution for the Resolve.");
         return;
       }
+
+      // Set loading to true when making a request to change status
+      setLoading(true);
 
       const res = await AxiosService.put(
         `/tickets/status/${ticket._id}/${status}`,
@@ -202,6 +210,9 @@ function AdminTicket() {
       if (error.response.status === 401) {
         logout();
       }
+    } finally {
+      // Set loading back to false when the request is complete (success or error)
+      setLoading(false);
     }
   };
 
@@ -215,64 +226,78 @@ function AdminTicket() {
         overflowY: "auto",
       }}
     >
-      <Row className="justify-content-center ">
-        <Col
-          xs={12}
-          md={8}
-          lg={6}
-          className=""
-          style={{ background: "#fff", padding: "20px", borderRadius: "10px" }}
-        >
-          <div
-            className="Tickets-wrapper"
-            style={{ display: "flex", justifyContent: "center" }}
+      {loading ? ( // Display spinner while loading
+        <Spinner />
+      ) : (
+        <Row className="justify-content-center ">
+          <Col
+            xs={12}
+            md={8}
+            lg={6}
+            className=""
+            style={{
+              background: "#fff",
+              padding: "20px",
+              borderRadius: "10px",
+            }}
           >
-            <TicketTile ticket={ticket} />
-          </div>
-          <div style={{ textAlign: "center", marginTop: "20px" }}>
-            {ticket.status !== "pending" ? (
-              <Button variant="warning" onClick={() => changeStatus("pending")}>
-                Pending
-              </Button>
-            ) : (
-              <></>
-            )}
-            &nbsp;
-            {ticket.status !== "approved" ? (
-              <Button
-                variant="secondary"
-                onClick={() => changeStatus("approved")}
-              >
-                Approved
-              </Button>
-            ) : (
-              <></>
-            )}
-            &nbsp;
-            {ticket.status !== "resolved" ? (
-              <>
+            <div
+              className="Tickets-wrapper"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <TicketTile ticket={ticket} />
+            </div>
+            <div style={{ textAlign: "center", marginTop: "20px" }}>
+              {ticket.status !== "pending" ? (
                 <Button
-                  variant="success"
-                  onClick={() => changeStatus("resolved")}
+                  variant="warning"
+                  onClick={() => changeStatus("pending")}
                 >
-                  Resolved
+                  Pending
                 </Button>
-                <Form.Group className="mb-3" style={{ marginTop: "10px" }}>
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Solution for Resolved"
-                    value={reason}
-                    onChange={(e) => setReason(e.target.value)}
-                    style={{ height: "100px" }}
-                  />
-                </Form.Group>
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
-        </Col>
-      </Row>
+              ) : (
+                <></>
+              )}
+              &nbsp;
+              {ticket.status !== "approved" ? (
+                <Button
+                  variant="secondary"
+                  onClick={() => changeStatus("approved")}
+                >
+                  Approved
+                </Button>
+              ) : (
+                <></>
+              )}
+              &nbsp;
+              {ticket.status !== "resolved" ? (
+                <>
+                  <Button
+                    variant="success"
+                    onClick={() => changeStatus("resolved")}
+                  >
+                    Resolved
+                  </Button>
+                  <Form.Group
+                    className="mb-3"
+                    style={{ marginTop: "10px" }}
+                  >
+                    <Form.Control
+                      as="textarea"
+                      placeholder="Solution for Resolved"
+                      value={reason}
+                      onChange={(e) => setReason(e.target.value)}
+                      style={{ height: "100px" }}
+                    />
+                  </Form.Group>
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
+          </Col>
+        </Row>
+      )}
     </Container>
   );
 }

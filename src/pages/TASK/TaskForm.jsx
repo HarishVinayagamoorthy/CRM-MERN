@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./task.module.css";
+import  Spinner from "../../components/utils/Sipnners"
 
 const TaskForm = ({ refreshTasks }) => {
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +15,7 @@ const TaskForm = ({ refreshTasks }) => {
   const [description, setDescription] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
   const [error, setError] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const handleShow = () => setShowModal(true);
   const handleClose = () => {
     setShowModal(false);
@@ -29,7 +30,7 @@ const TaskForm = ({ refreshTasks }) => {
             setError("All fields are required");
             return;
         }
-
+        setLoading(true);
         const response = await AxiosService.post("/task/create", {
             title,
             description,
@@ -54,6 +55,9 @@ const TaskForm = ({ refreshTasks }) => {
         } else {
             toast.error("An error occurred while creating the task.");
         }
+    }finally {
+      // Set loading back to false when the form submission is complete (success or error)
+      setLoading(false);
     }
 };
 
@@ -62,8 +66,8 @@ const TaskForm = ({ refreshTasks }) => {
   
   return (
     <div className={styles.taskForm}>
-      <Button variant="primary" onClick={handleShow}>
-        Create Task
+      <Button variant="primary" onClick={handleShow} disabled={loading}>
+        {loading ? <Spinner  /> : "Create Task"}
       </Button>
 
       <Modal show={showModal} onHide={handleClose}>

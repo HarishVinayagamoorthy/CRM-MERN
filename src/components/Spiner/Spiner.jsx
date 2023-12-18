@@ -9,7 +9,7 @@ const Spiner = () => {
         className="d-flex justify-content-center align-items-center"
         style={{ width: "100%", height: "100vh" }}
       >
-        <Spinner animation="border" variant="light" />
+        <Spinner animation="border" variant="primary" />
         &nbsp; Loading...
       </div>
     </>

@@ -94,7 +94,7 @@ const SubmittedTaskPage = () => {
 
   return (
     <>
-      {loading && <Spinner />} {/* Show the spinner when loading */}
+      {/* Show the spinner when loading */}
       <Container>
         <Card className={`mb-4`}>
           <Card.Header>
@@ -119,7 +119,7 @@ const SubmittedTaskPage = () => {
                   )}
                 </div>
               </Col>
-
+              {loading && <Spinner />} 
               <Col sm={4} className="mb-3">
                 <div className="input-group">
                   <input

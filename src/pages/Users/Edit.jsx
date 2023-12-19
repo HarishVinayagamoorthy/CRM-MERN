@@ -78,44 +78,88 @@ const Edit = () => {
         getdata();
     }, []);
 
+    // const updateuser = async (e) => {
+    //     e.preventDefault();
+    
+    //     const { name, email, password, add, mobile, desc, status } = inpval;
+    
+    //     // Client-side validation
+    //     if (!name || !email || !password || !mobile || !add || !desc || !status) {
+    //         toast.error("Please fill in all the required fields.");
+    //         return; // Exit the function early if validation fails
+    //     }
+    
+    //     try {
+    //         const res2 = await fetch(`/user/updateuser/${id}`, {
+    //             method: "PUT",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify({
+    //                 name, email, password, add, mobile, desc, status
+    //             })
+    //         });
+    
+    //         if (!res2.ok) {
+    //             throw new Error("Failed to update user");
+    //         }
+    
+    //         const data2 = await res2.json();
+    //         console.log(data2);
+    
+    //         navigate("/home");
+    //         setUPdata(data2);
+    //         toast.success("User Updated Successfully");
+    //     } catch (error) {
+    //         console.error("Error updating user:", error);
+    //         toast.error("Email or Mobile is Already exited");
+    //     }
+    // };
     const updateuser = async (e) => {
-        e.preventDefault();
-    
-        const { name, email, password, add, mobile, desc, status } = inpval;
-    
-        // Client-side validation
-        if (!name || !email || !password || !mobile || !add || !desc || !status) {
-            toast.error("Please fill in all the required fields.");
-            return; // Exit the function early if validation fails
-        }
-    
-        try {
-            const res2 = await fetch(`/user/updateuser/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name, email, password, add, mobile, desc, status
-                })
-            });
-    
-            if (!res2.ok) {
-                throw new Error("Failed to update user");
-            }
-    
-            const data2 = await res2.json();
-            console.log(data2);
-    
-            navigate("/home");
-            setUPdata(data2);
-            toast.success("User Updated Successfully");
-        } catch (error) {
-            console.error("Error updating user:", error);
-            toast.error("Email or Mobile is Already exited");
-        }
-    };
-    
+      e.preventDefault();
+  
+      const { name, email, password, add, mobile, desc, status } = inpval;
+  
+      // Client-side validation
+      if (!name || !email || !password || !mobile || !add || !desc || !status) {
+          toast.error("Please fill in all the required fields.");
+          return; // Exit the function early if validation fails
+      }
+  
+      try {
+          const response = await AxiosService.put(`/user/updateuser/${id}`, {
+              name,
+              email,
+              password,
+              add,
+              mobile,
+              desc,
+              status
+          }, {
+              headers: {
+                  "Content-Type": "application/json"
+              }
+          });
+  
+          // Axios automatically throws an error for non-2xx responses
+          const data2 = response.data;
+          console.log(data2);
+  
+          navigate("/home");
+          setUPdata(data2);
+          toast.success("User Updated Successfully");
+      } catch (error) {
+          console.error("Error updating user:", error);
+  
+          // Check if the error is due to duplicate email or mobile
+          if (error.response && (error.response.status === 400 || error.response.status === 409)) {
+              toast.error("Email or Mobile is Already existed");
+          } else {
+              toast.error("Failed to update user");
+          }
+      }
+  };
+  
     return (
       <div className="container mt-2">
       <form className="bg-light p-4 rounded">

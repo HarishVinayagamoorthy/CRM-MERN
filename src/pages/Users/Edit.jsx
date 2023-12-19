@@ -90,7 +90,7 @@ const Edit = () => {
         }
     
         try {
-            const res2 = await fetch(`http://localhost:8000/user/updateuser/${id}`, {
+            const res2 = await fetch(`/user/updateuser/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

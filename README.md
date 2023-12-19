@@ -42,5 +42,5 @@ To get started with the CRM Project:
    git clone https://github.com/HarishVinayagamoorthy/CRM-MERN
 
 
-![Video Preview](Uploading Vite + React - Google Chrome 2023-12-19 11-37-18_1.mp4…)
+
    

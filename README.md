@@ -43,4 +43,9 @@ To get started with the CRM Project:
 
 
 
+- **Admin Email:** admin@gmail.com
+- **Admin Password:**@Password123
+
+- **User Email:** user@gmail.com
+- **User Password:**@Password123
    

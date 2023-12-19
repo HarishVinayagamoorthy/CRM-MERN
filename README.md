@@ -15,6 +15,10 @@ This project implements a comprehensive CRM solution with role-based authenticat
 - **Task Assignment**: Create and manage tasks, assign tasks to users, edit, and delete tasks.
 - **Visualization**: Visual representation of user statistics, tickets, and tasks.
 
+- **User Status Management**: Admins can change the status of users between Active and Inactive.
+  - Active users can log in and access their User Dashboard.
+  - Inactive users are restricted from logging in and accessing their User Dashboard.
+
 ### User Dashboard
 
 - **Ticket Creation**: Create coding-related problem tickets.

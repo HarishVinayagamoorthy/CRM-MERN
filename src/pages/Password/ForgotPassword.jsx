@@ -64,7 +64,10 @@ const ResetPassword = () => {
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-          />
+         
+         
+         
+         />
           {formik.touched.email && formik.errors.email && (
             <p className={Forgotpassword.error}>{formik.errors.email}</p>
           )}

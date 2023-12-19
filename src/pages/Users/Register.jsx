@@ -22,6 +22,8 @@ const Register = () => {
     desc: "",
   });
 
+
+
   const setdata = (e) => {
     const { name, value } = e.target;
     setINP((preval) => ({
@@ -36,6 +38,16 @@ const Register = () => {
     setLoading(true); // Set loading to true when starting the registration process
 
     const { name, email, password, add, mobile, desc, status } = inpval;
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+    // Validate the password
+    if (!passwordRegex.test(password)) {
+        toast.error("Password must be at least 8 characters, with at least one uppercase letter, one lowercase letter, and one digit.");
+        setLoading(false); // Set loading to false after validation
+        return;
+    }
+
 
     try {
       let res = await AxiosService.post("/user/register", inpval);

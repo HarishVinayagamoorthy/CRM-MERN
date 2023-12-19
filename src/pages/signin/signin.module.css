@@ -172,3 +172,18 @@
   bottom: -90px;
   left: -70px;
 }
+
+.passwordIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #ffffff; /* Adjust the color as needed */
+}
+
+/* Style for the eye icon when password is visible */
+.passwordIcon.visible {
+  color: #2ecc71; /* Adjust the color as needed */
+}

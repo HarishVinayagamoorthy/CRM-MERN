@@ -126,6 +126,17 @@ const Edit = () => {
           return; // Exit the function early if validation fails
       }
   
+    // Password regex pattern: At least 8 characters, at least one uppercase letter, one lowercase letter, and one digit
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+    // Validate the password
+    if (!passwordRegex.test(password)) {
+        toast.error("Password must be at least 8 characters, with at least one uppercase letter, one lowercase letter, and one digit.");
+        return;
+    }
+
+
+
       try {
           const response = await AxiosService.put(`/user/updateuser/${id}`, {
               name,
